@@ -36,7 +36,6 @@ class Fib extends Component {
   }
   randerSeenIndex() {
     if (this.state.seenIndexs.length > 0) {
-      console.log(this.state.seenIndexs);
       const indexs = this.state.seenIndexs.map(({ number }) => number);
       return indexs.join(', ');
     }
