@@ -10,6 +10,9 @@ class Fib extends Component {
   async fetchIndexs() {
     try {
       const seenIndexs = await axios.get('/api/values/all');
+      if (!seenIndexs instanceof Array) {
+        return;
+      }
       this.setState({ seenIndexs: seenIndexs.data });
     } catch (error) {
       console.log(error);
