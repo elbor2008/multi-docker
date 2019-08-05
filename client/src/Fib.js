@@ -12,7 +12,7 @@ class Fib extends Component {
       const seenIndexs = await axios.get('/api/values/all');
       this.setState({ seenIndexs: seenIndexs.data });
     } catch (error) {
-      console.log(error);
+      this.setState({ seenIndexs: [] });
     }
   }
   async fetchValues() {
@@ -20,7 +20,7 @@ class Fib extends Component {
       const values = await axios.get('/api/values/current');
       this.setState({ values: values.data });
     } catch (error) {
-      console.log(error);
+      this.setState({ values: {} });
     }
   }
   renderValues() {
