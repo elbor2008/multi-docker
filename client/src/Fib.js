@@ -34,6 +34,12 @@ class Fib extends Component {
     }
     return entries;
   }
+  randerSeenIndex() {
+    console.log(this.state.seenIndexs);
+    const indexs = this.state.seenIndexs.map(({ number }) => number);
+
+    return indexs.join(', ');
+  }
   handleSubmit = async event => {
     event.preventDefault();
     await axios.post('/api/values', { index: this.state.index });
@@ -53,7 +59,7 @@ class Fib extends Component {
           <button>Submit</button>
           <h3>Indexs I have seen: </h3>
           {
-            this.state.seenIndexs.map(({ number }) => number).join(', ')
+            this.randerSeenIndex()
           }
           <h3>Calculated Values: </h3>
           {
