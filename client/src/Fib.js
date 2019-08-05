@@ -35,40 +35,42 @@ class Fib extends Component {
     return entries;
   }
   randerSeenIndex() {
-    console.log(this.state.seenIndexs);
-    const indexs = this.state.seenIndexs.map(({ number }) => number);
-
-    return indexs.join(', ');
+    if (this.state.seenIndexs.length > 0) {
+      const indexs = this.state.seenIndexs.map(({ number }) => number);
+      return indexs.join(', ');
+    }
+    return '';
   }
-  handleSubmit = async event => {
-    event.preventDefault();
-    await axios.post('/api/values', { index: this.state.index });
-    this.setState({ index: '' });
-  }
-  componentDidMount() {
-    this.fetchIndexs();
-    this.fetchValues();
-  }
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>Enter your index: </label>
-          <input value={this.state.index}
-            onChange={event => this.setState({ index: event.target.value })} />
-          <button>Submit</button>
-          <h3>Indexs I have seen: </h3>
-          {
-            this.randerSeenIndex()
-          }
-          <h3>Calculated Values: </h3>
-          {
-            this.renderValues()
-          }
-        </form>
-      </div>
-    );
-  }
+}
+handleSubmit = async event => {
+  event.preventDefault();
+  await axios.post('/api/values', { index: this.state.index });
+  this.setState({ index: '' });
+}
+componentDidMount() {
+  this.fetchIndexs();
+  this.fetchValues();
+}
+render() {
+  return (
+    <div>
+      <form onSubmit={this.handleSubmit}>
+        <label>Enter your index: </label>
+        <input value={this.state.index}
+          onChange={event => this.setState({ index: event.target.value })} />
+        <button>Submit</button>
+        <h3>Indexs I have seen: </h3>
+        {
+          this.randerSeenIndex()
+        }
+        <h3>Calculated Values: </h3>
+        {
+          this.renderValues()
+        }
+      </form>
+    </div>
+  );
+}
 }
 
 export default Fib;
